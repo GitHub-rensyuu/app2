@@ -3,6 +3,15 @@ class PostImage < ApplicationRecord
   has_one_attached :image
   # userに属する
   belongs_to :user
+  # post_commentsと関係
+  has_many :post_comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+
+
+  def favorited_by?(user)
+    favorites.exists?(user_id: user.id)
+  end
+
 
   # 画像が投稿されていない場合はを考慮
   def get_image

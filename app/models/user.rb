@@ -11,7 +11,8 @@ class User < ApplicationRecord
 
   # N個のpost_imagesに関連。dependent: :destroyでこれが消えるとN個のほうも消える。
   has_many :post_images, dependent: :destroy
-
+  has_many :post_comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
 
   # profile_imageという名前でActiveStorageでプロフィール画像を保存できるように設定
